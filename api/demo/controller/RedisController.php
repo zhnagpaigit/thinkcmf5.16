@@ -51,6 +51,8 @@ class RedisController extends ApiBaseController
             'prefix' => 'pre2_',
         ];
 
+
+
         $this->_redis = new Redis();
         $this->_redis1 = new Redis($this->_config1);
         $this->_redis2 = new Redis($this->_config2);
@@ -727,5 +729,26 @@ class RedisController extends ApiBaseController
         dump($tmp);
         $redis->close();
 
+    }
+
+
+    public function aliRedis()
+    {
+        $config = [
+            'host' => 'r-wz9345ef4f7568c4pd.redis.rds.aliyuncs.com',
+            'port' => 6379,
+            'select' => 0,
+            'timeout' => 0,
+            'expire' => 0,
+            'persistent' => false,
+            'prefix' => 'pre2_',
+        ];
+
+        $redis = new Redis($config);
+        dump($redis);
+
+        $redis = $this->_redis;
+        $redis->set('myname', '第一个值');
+        echo '$fristVal = '. $redis->get('myname');
     }
 }
