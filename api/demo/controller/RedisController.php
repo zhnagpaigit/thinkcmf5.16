@@ -744,6 +744,7 @@ class RedisController extends ApiBaseController
             'prefix' => 'pre2_',
         ];
 
+//        $redis = new Redis($config);
         $redis = new Redis($config);
         dump($redis);
 
