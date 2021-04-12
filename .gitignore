@@ -4,6 +4,7 @@
 .settings
 .idea
 .git
+/data
 /build
 /public/assets/dist
 /node_modules
