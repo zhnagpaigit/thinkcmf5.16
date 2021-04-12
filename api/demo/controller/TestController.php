@@ -22,7 +22,9 @@ class TestController extends RestBaseController
 
     public function test()
     {
-        echo 'hhh';
+       $list = range(1,100);
+       echo array_sum($list);
+
     }
 
     //生成门店月统计表
@@ -149,5 +151,8 @@ class TestController extends RestBaseController
         }
         echo "</table>";
     }
+
+
+
 
 }

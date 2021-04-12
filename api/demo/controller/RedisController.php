@@ -27,7 +27,6 @@ class RedisController extends ApiBaseController
 
     public function __construct(App $app = null)
     {
-       // phpinfo();
 
         parent::__construct($app);
         $this->_config1 = [
@@ -62,6 +61,7 @@ class RedisController extends ApiBaseController
     // -- 字符串 ---------------- begin ---------------------------//
     public function typeSet() // 取得与指定的键值相关联的值
     {
+
 
         $redis = $this->_redis;
         $redis->set('myname', 'zhangSan');
@@ -737,19 +737,35 @@ class RedisController extends ApiBaseController
         $config = [
             'host' => 'r-wz9345ef4f7568c4pd.redis.rds.aliyuncs.com',
             'port' => 6379,
-            'select' => 0,
+//            'select' => 1,
             'timeout' => 0,
             'expire' => 0,
             'persistent' => false,
-            'prefix' => 'pre2_',
+            'prefix' => 'pre_',
+//            'auth'=>'123456Ai'
         ];
 
-//        $redis = new Redis($config);
+
         $redis = new Redis($config);
+//        $redis->select(1);
+        $auth = $redis->auth('123456Ai'); //设置密码
         dump($redis);
 
-        $redis = $this->_redis;
-        $redis->set('myname', '第一个值');
-        echo '$fristVal = '. $redis->get('myname');
+   //     $redis = $this->_redis;
+//        $redis->set('myname', '第一个值');
+//        echo '$fristVal = '. $redis->get('myname');
+//        $redis->hset('h', 'key1', 'hello');
+//        $redis->hset('h', 'key2', 'world');
+//      $res =  $redis->hget('h','key1');
+//      dump($res);
+      $redis->lPush('list','1','a','c');
+        $res = $pop = $redis->lPop('list');
+        dump($res);
+
+        $redis->del('key1');
+
+        $redis->sAdd('key1', 'member1'); /* TRUE, 'key1' => {'member1'} */
+        $redis->sAdd('key1', 'member2'); /* TRUE, 'key1' => {'member1', 'member2'}*/
+        $redis->sAdd('key1', 'member2'); /* FALSE, 'key1' => {'member1', 'member2'}*/
     }
 }
