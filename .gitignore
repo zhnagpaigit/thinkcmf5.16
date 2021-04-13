@@ -5,7 +5,6 @@
 .idea
 .git
 /data
-/vendor
 /update
 /build
 /public/assets/dist
