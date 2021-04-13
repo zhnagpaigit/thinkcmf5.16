@@ -18,7 +18,7 @@ use cmf\controller\BaseController;
 class TestController extends BaseController {
     public $appid = "wxa80ff8a91552c2ff";//智能马桶
     public $scret = "32f59df40b9db6398c0e9b4922e24843";
-    public $apiUrl = "https://mycmf.yirj.xin/";
+    public $apiUrl = "https://mycmf.yirj.xin";
     public function index()
     {
 
@@ -27,12 +27,10 @@ class TestController extends BaseController {
     public function getopen()
     {
 
-        $callbackUrl = urlencode(url("test/saveopenid"));
-       echo url("test/saveopenid");
-        return;
+        $callbackUrl = urlencode($this->apiUrl.url("test/saveopenid"));
 
-     //   $codeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->appid."&redirect_uri=".$callbackUrl."&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
-    //    Header("Location: $codeUrl");
+        $codeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->appid."&redirect_uri=".$callbackUrl."&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+        Header("Location: $codeUrl");
     }
 
 
