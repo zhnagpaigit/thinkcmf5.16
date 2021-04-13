@@ -27,7 +27,7 @@ class TestController extends BaseController {
     public function getopen()
     {
 
-        $callbackUrl = urlencode($this->apiUrl."/index.php?m=itoilet&c=test&a=saveopenid");
+        $callbackUrl = urlencode(url("test/saveopenid"));
         echo $this->apiUrl."/index.php?m=itoilet&c=test&a=saveopenid";
         echo $callbackUrl;
         return;
