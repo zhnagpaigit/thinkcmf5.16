@@ -28,6 +28,8 @@ class TestController extends BaseController {
     {
 
         $callbackUrl = urlencode($this->apiUrl."/index.php?m=itoilet&c=test&a=saveopenid");
+        echo $callbackUrl;
+        return;
 
         $codeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->appid."&redirect_uri=".$callbackUrl."&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
         Header("Location: $codeUrl");
