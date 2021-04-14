@@ -41,7 +41,7 @@ class IndexController extends HomeBaseController
 
         if( $tmpStr == $signature ){
             file_put_contents('../data/runtime/log/1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
-            return true;
+            echo $_GET['echostr'];
         }else{
             return false;
         }
