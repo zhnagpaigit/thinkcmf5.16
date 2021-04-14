@@ -28,20 +28,21 @@ class TestController extends BaseController {
 
         $token = 'cozy';
         $tmpArr = array($token, $timestamp, $nonce);
-        sort($tmpArr, SORT_STRING);
+        sort($tmpArr);
         $tmpStr = implode( $tmpArr );
         $tmpStr = sha1( $tmpStr );
-        file_put_contents('../data/runtime/log/1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
+//        file_put_contents('../data/runtime/log/1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
         if( $tmpStr == $signature ){
             header('content-type:text');
-//            echo $_GET['echostr'];
-            file_put_contents('../data/runtime/log/1.txt',"success".PHP_EOL, FILE_APPEND);
-            return $_GET['echostr'];
+            echo $_GET['echostr'];
+//            file_put_contents('../data/runtime/log/1.txt',"success".PHP_EOL, FILE_APPEND);
+//            return 1;
         }else{
-//            echo "failure";
-            file_put_contents('../data/runtime/log/1.txt',"failure".PHP_EOL, FILE_APPEND);
-            return "failure";
+            echo "failure";
+//            file_put_contents('../data/runtime/log/1.txt',"failure".PHP_EOL, FILE_APPEND);
+//            return 0;
         }
+        exit;
     }
 
     public function getopen()
