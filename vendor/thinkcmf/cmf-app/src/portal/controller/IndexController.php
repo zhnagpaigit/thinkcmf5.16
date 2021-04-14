@@ -19,6 +19,16 @@ class IndexController extends HomeBaseController
     public function index()
     {
 //        return $this->fetch(":index");
+        if($this->checkSignature())
+        {
+            echo $_GET['echostr'];
+        }
+
+    }
+
+
+    public function checkSignature()
+    {
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
@@ -28,18 +38,15 @@ class IndexController extends HomeBaseController
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode( $tmpArr );
         $tmpStr = sha1( $tmpStr );
-        file_put_contents('1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
+
         if( $tmpStr == $signature ){
-            header('content-type:text');
-            echo $_GET['echostr'];
-            file_put_contents('1.txt',"success".PHP_EOL, FILE_APPEND);
+            file_put_contents('../data/runtime/log/1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
             return true;
         }else{
-            echo "failure";
-            file_put_contents('1.txt',"failure".PHP_EOL, FILE_APPEND);
             return false;
         }
     }
+
     public function wxToken()
     {
         $signature = $_GET["signature"];
@@ -51,15 +58,15 @@ class IndexController extends HomeBaseController
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode( $tmpArr );
         $tmpStr = sha1( $tmpStr );
-        file_put_contents('1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
+        file_put_contents('../data/runtime/log/1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
         if( $tmpStr == $signature ){
             header('content-type:text');
             echo $_GET['echostr'];
-            file_put_contents('1.txt',"success".PHP_EOL, FILE_APPEND);
-            return true;
-        }else{
+            file_put_contents('../data/runtime/log/1.txt',"success".PHP_EOL, FILE_APPEND);
+            return $_GET['echostr'];
+        }else {
             echo "failure";
-            file_put_contents('1.txt',"failure".PHP_EOL, FILE_APPEND);
+            file_put_contents('../data/runtime/log/1.txt', "failure" . PHP_EOL, FILE_APPEND);
             return false;
         }
     }
