@@ -18,74 +18,84 @@ class IndexController extends HomeBaseController
     // 首页
     public function index()
     {
+//        $signature = $_GET["signature"];
+//        $timestamp = $_GET["timestamp"];
+//        $nonce = $_GET["nonce"];
+//
+//        $token = 'cozy';
+//        $tmpArr = array($token, $timestamp, $nonce);
+//        sort($tmpArr, SORT_STRING);
+//        $tmpStr = implode( $tmpArr );
+//        $tmpStr = sha1( $tmpStr );
+//        file_put_contents('../data/runtime/log/1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
+//        if( $tmpStr == $signature ){
+//            header('content-type:text');
+//            echo $_GET['echostr'];
+////            file_put_contents('../data/runtime/log/1.txt',"success".PHP_EOL, FILE_APPEND);
+////            return 1;
+//        }else{
+//            echo "failure";
+////            file_put_contents('../data/runtime/log/1.txt',"failure".PHP_EOL, FILE_APPEND);
+////            return 0;
+//        }
+
+        $echoStr = $_GET["echostr"];
+        if($this->checkSignature()){
+            echo $echoStr;
+            exit;
+        }
+    }
+
+
+    private function checkSignature()
+    {
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
 
         $token = 'cozy';
         $tmpArr = array($token, $timestamp, $nonce);
-        sort($tmpArr, SORT_STRING);
+        sort($tmpArr);
         $tmpStr = implode( $tmpArr );
         $tmpStr = sha1( $tmpStr );
-        file_put_contents('../data/runtime/log/1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
+
         if( $tmpStr == $signature ){
-            header('content-type:text');
-            echo $_GET['echostr'];
-//            file_put_contents('../data/runtime/log/1.txt',"success".PHP_EOL, FILE_APPEND);
-//            return 1;
+            return true;
         }else{
-            echo "failure";
-//            file_put_contents('../data/runtime/log/1.txt',"failure".PHP_EOL, FILE_APPEND);
-//            return 0;
-        }
-
-    }
-
-
-    /**
-     * 用SHA1算法生成安全签名
-     * @param string $token 票据
-     * @param string $timestamp 时间戳
-     * @param string $nonce 随机字符串
-     * @param string $encrypt 密文消息
-     */
-    public function getSHA1($token, $timestamp, $nonce, $encrypt_msg)
-    {
-        //排序
-        try {
-            $array = array($encrypt_msg, $token, $timestamp, $nonce);
-            sort($array, SORT_STRING);
-            $str = implode($array);
-            return array(ErrorCode::$OK, sha1($str));
-        } catch (Exception $e) {
-            //print $e . "\n";
-            return array(ErrorCode::$ComputeSignatureError, null);
-        }
-    }
-
-    public function wxToken()
-    {
-        $signature = $_GET["signature"];
-        $timestamp = $_GET["timestamp"];
-        $nonce = $_GET["nonce"];
-
-        $token = 'cozy';
-        $tmpArr = array($token, $timestamp, $nonce);
-        sort($tmpArr, SORT_STRING);
-        $tmpStr = implode( $tmpArr );
-        $tmpStr = sha1( $tmpStr );
-        file_put_contents('../data/runtime/log/1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
-        if( $tmpStr == $signature ){
-            header('content-type:text');
-            echo $_GET['echostr'];
-            file_put_contents('../data/runtime/log/1.txt',"success".PHP_EOL, FILE_APPEND);
-            return $_GET['echostr'];
-        }else {
-            echo "failure";
-            file_put_contents('../data/runtime/log/1.txt', "failure" . PHP_EOL, FILE_APPEND);
             return false;
         }
     }
+    public function responseMsg()
+    {
+        $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+
+        if (!empty($postStr)){
+            $postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+            $fromUsername = $postObj->FromUserName;
+            $toUsername = $postObj->ToUserName;
+            $keyword = trim($postObj->Content);
+            $time = time();
+            $textTpl = "<xml>
+                        <ToUserName><![CDATA[%s]]></ToUserName>
+                        <FromUserName><![CDATA[%s]]></FromUserName>
+                        <CreateTime>%s</CreateTime>
+                        <MsgType><![CDATA[%s]]></MsgType>
+                        <Content><![CDATA[%s]]></Content>
+                        <FuncFlag>0</FuncFlag>
+                        </xml>";
+            if($keyword == "?" || $keyword == "？")
+            {
+                $msgType = "text";
+                $contentStr = date("Y-m-d H:i:s",time());
+                $resultStr = sprintf($textTpl, $fromUsername, $toUsername, $time, $msgType, $contentStr);
+                echo $resultStr;
+            }
+        }else{
+            echo "";
+            exit;
+        }
+    }
+
 
 }
 
