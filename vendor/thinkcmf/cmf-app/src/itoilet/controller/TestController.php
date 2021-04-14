@@ -21,7 +21,26 @@ class TestController extends BaseController {
     public $apiUrl = "https://mycmf.yirj.xin";
     public function index()
     {
+        $signature = $_GET["signature"];
+        $timestamp = $_GET["timestamp"];
+        $nonce = $_GET["nonce"];
 
+        $token = 'cozy';
+        $tmpArr = array($token, $timestamp, $nonce);
+        sort($tmpArr, SORT_STRING);
+        $tmpStr = implode( $tmpArr );
+        $tmpStr = sha1( $tmpStr );
+        file_put_contents('../data/runtime/log/1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
+        if( $tmpStr == $signature ){
+            header('content-type:text');
+            echo $_GET['echostr'];
+            file_put_contents('../data/runtime/log/1.txt',"success".PHP_EOL, FILE_APPEND);
+            return true;
+        }else{
+            echo "failure";
+            file_put_contents('../data/runtime/log/1.txt',"failure".PHP_EOL, FILE_APPEND);
+            return false;
+        }
     }
 
     public function getopen()
@@ -30,8 +49,6 @@ class TestController extends BaseController {
       //  $callbackUrl = urlencode($this->apiUrl.url("test/saveopenid"));
         $callbackUrl = "https://mycmf.yirj.xin/itoilet/test/saveopenid";
         $codeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->appid."&redirect_uri=".$callbackUrl."&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
-        echo $codeUrl;
-        return;
         Header("Location: $codeUrl");
     }
 
