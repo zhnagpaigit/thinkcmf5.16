@@ -21,6 +21,8 @@ class TestController extends BaseController {
     public $apiUrl = "https://mycmf.yirj.xin";
     public function index()
     {
+        echo $_GET['echostr'];
+        return;
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
