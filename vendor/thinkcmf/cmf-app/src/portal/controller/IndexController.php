@@ -19,16 +19,6 @@ class IndexController extends HomeBaseController
     public function index()
     {
 //        return $this->fetch(":index");
-        if($this->checkSignature())
-        {
-            echo $_GET['echostr'];
-        }
-
-    }
-
-
-    public function checkSignature()
-    {
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
@@ -45,6 +35,13 @@ class IndexController extends HomeBaseController
         }else{
             return false;
         }
+
+    }
+
+
+    public function checkSignature()
+    {
+
     }
 
     public function wxToken()
