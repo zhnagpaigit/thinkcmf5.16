@@ -65,6 +65,37 @@ class IndexController extends HomeBaseController
             return false;
         }
     }
+
+
+
+    public function index2()
+    {
+        $signature = $_GET["signature"];
+        $timestamp = $_GET["timestamp"];
+        $nonce = $_GET["nonce"];
+
+        $token = 'cozy';
+        $tmpArr = array($token, $timestamp, $nonce);
+        sort($tmpArr);
+        $tmpStr = implode( $tmpArr );
+        $tmpStr = sha1( $tmpStr );
+//        file_put_contents('../data/runtime/log/1.txt',json_encode($_REQUEST).PHP_EOL, FILE_APPEND);
+        if( $tmpStr == $signature ){
+            header('content-type:text');
+            echo $_GET['echostr'];
+//            file_put_contents('../data/runtime/log/1.txt',"success".PHP_EOL, FILE_APPEND);
+//            return 1;
+        }else{
+            echo "failure";
+//            file_put_contents('../data/runtime/log/1.txt',"failure".PHP_EOL, FILE_APPEND);
+//            return 0;
+        }
+        exit;
+
+    }
+
+
+
     public function responseMsg()
     {
         $postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
