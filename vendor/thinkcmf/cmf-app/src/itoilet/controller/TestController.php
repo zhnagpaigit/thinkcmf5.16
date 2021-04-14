@@ -35,11 +35,11 @@ class TestController extends BaseController {
             header('content-type:text');
             echo $_GET['echostr'];
             file_put_contents('../data/runtime/log/1.txt',"success".PHP_EOL, FILE_APPEND);
-            return true;
+//            return true;
         }else{
             echo "failure";
-            file_put_contents('../data/runtime/log/1.txt',"failure".PHP_EOL, FILE_APPEND);
-            return false;
+//            file_put_contents('../data/runtime/log/1.txt',"failure".PHP_EOL, FILE_APPEND);
+//            return false;
         }
     }
 
