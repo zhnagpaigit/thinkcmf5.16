@@ -21,7 +21,6 @@ class TestController extends BaseController {
     public $apiUrl = "https://mycmf.yirj.xin";
     public function index()
     {
-
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
@@ -43,6 +42,7 @@ class TestController extends BaseController {
 //            return 0;
         }
         exit;
+
     }
 
     public function getopen()
