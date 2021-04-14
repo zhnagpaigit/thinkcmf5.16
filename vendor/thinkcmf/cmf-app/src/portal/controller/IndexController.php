@@ -31,12 +31,12 @@ class IndexController extends HomeBaseController
         if( $tmpStr == $signature ){
             header('content-type:text');
             echo $_GET['echostr'];
-            file_put_contents('../data/runtime/log/1.txt',"success".PHP_EOL, FILE_APPEND);
-            return true;
+//            file_put_contents('../data/runtime/log/1.txt',"success".PHP_EOL, FILE_APPEND);
+//            return 1;
         }else{
             echo "failure";
-            file_put_contents('../data/runtime/log/1.txt',"failure".PHP_EOL, FILE_APPEND);
-            return false;
+//            file_put_contents('../data/runtime/log/1.txt',"failure".PHP_EOL, FILE_APPEND);
+//            return 0;
         }
 
     }
