@@ -47,7 +47,6 @@ class TestController extends BaseController {
 
     public function getopen()
     {
-
       //  $callbackUrl = urlencode($this->apiUrl.url("test/saveopenid"));
         $callbackUrl = "https://mycmf.yirj.xin/itoilet/test/saveopenid";
         $codeUrl = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->appid."&redirect_uri=".$callbackUrl."&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
