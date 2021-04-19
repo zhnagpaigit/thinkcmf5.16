@@ -118,7 +118,7 @@ class TestController extends BaseController {
             $data = json_decode($data,true);
             echo "userInfo 数组：<br/>";
 //            $access_token = $data['access_token'];
-
+            dump($data);
             echo "<table>
                     <tr><th>名称</th>数据</th></tr>
                     <tr><th>openID</th><td>{$open_id}</td></tr>
