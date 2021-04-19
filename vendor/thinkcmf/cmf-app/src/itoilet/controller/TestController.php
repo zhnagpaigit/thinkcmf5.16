@@ -122,9 +122,9 @@ class TestController extends BaseController {
             echo "<table>
                     <tr><th>名称</th>数据</th></tr>
                     <tr><th>openID</th><td>{$open_id}</td></tr>
-                     <tr><th>昵称</th><td>{$data['nickname']??''}</td></tr>
-                     <tr><th>省</th><td>{$data['province']??''}</td></tr>
-                     <tr><th>市</th><td>{$data['city']??''}</td></tr>
+                     <tr><th>昵称</th><td>".$data['nickname']??''."</td></tr>
+                     <tr><th>省</th><td>".$data['province']??''." </td></tr>
+                     <tr><th>市</th><td>".$data['city']??''." </td></tr>
                      <tr><th>图像</th><td><image src='".$data['headimgurl']??''."' /></td></tr>
             </table>";
 
