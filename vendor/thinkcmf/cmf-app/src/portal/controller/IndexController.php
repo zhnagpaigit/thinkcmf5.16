@@ -37,13 +37,15 @@ class IndexController extends HomeBaseController
 //            echo "failure";
 ////            file_put_contents('../data/runtime/log/1.txt',"failure".PHP_EOL, FILE_APPEND);
 ////            return 0;
+///
 //        }
 
-        $echoStr = $_GET["echostr"];
-        if($this->checkSignature()){
-            echo $echoStr;
-            exit;
-        }
+//        $echoStr = $_GET["echostr"];
+//        if($this->checkSignature()){
+//            echo $echoStr;
+//            exit;
+//        }
+        return $this->fetch(":index");
     }
 
 
