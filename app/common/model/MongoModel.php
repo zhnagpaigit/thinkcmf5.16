@@ -25,8 +25,9 @@ class MongoModel
            echo $mongo;
         }else{
 //            $mongo ="mongodb://localhost:27017";
-            $mongo ="mongodb://root:Ali_Mg_2020_!#$*)(233@dds-uf62dea4453453842606-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-36315791";
-//            $mongo = "mongodb://root:Ali_Mg_2020_!#$*)(233@dds-uf62dea4453453841.mongodb.rds.aliyuncs.com:3717,dds-uf62dea4453453842.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-36315791";
+            // 公网
+            //     $mongo ="mongodb://root:Ali_Mg_2020_!#$*)(233@dds-uf62dea4453453842606-pub.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-36315791";
+            $mongo = "mongodb://root:Ali_Mg_2020_!#$*)(233@dds-uf62dea4453453841.mongodb.rds.aliyuncs.com:3717,dds-uf62dea4453453842.mongodb.rds.aliyuncs.com:3717/admin?replicaSet=mgset-36315791";
             // mongodb://pyiotuser:txpyiotuser@39.108.212.120:27017/pyiot
             //   $mongo ="mongodb://pyiotuser:txpyiotuser@localhost:27017";
             $this->_db = "pyiot";
