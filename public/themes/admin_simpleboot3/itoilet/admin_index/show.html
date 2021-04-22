@@ -1,0 +1,304 @@
+<extend name="Public@layout"/>
+<block name="headstyle">
+    <link href="/public/show/css/style.css" rel="stylesheet">
+
+</block>
+
+<block name="content">
+
+    <div id="main">
+        <div id="time">2021-02-01 15:06:08</div>
+        <div id="left">
+            <div class="man">
+                <div class="left ce">
+                    3
+                </div>
+                <div class="left bian">
+                    1
+                </div>
+            </div>
+
+            <div class="wsd">
+                <div class="left wen">
+                    25.2
+                </div>
+                <div class="left shi">
+                    31%
+                </div>
+            </div>
+
+            <div class="qjc">
+                <div class="left an">
+                    优 0.10 PPM
+                </div>
+                <div class="left hs">
+                    良 0.02 PPM
+                </div>
+            </div>
+        </div>
+        <div id="middle">
+            <div class="middle top">
+                <div class="man_liu">100</div>
+                <div class="man_ce">2</div>
+                <div class="woman_ce">1</div>
+                <div class="woman_liu">80</div>
+            </div>
+            <div class="pic">
+                <div class="male">
+                    <div class="biandou">
+                        <div class="left">
+                            <div class="people b_l_7 s7 hide">
+                            </div>
+                            <div class="people b_l_6 s6 hide">
+                            </div>
+                            <div class="people b_l_5 s5 hide">
+                            </div>
+                            <div class="people b_l_4 s4 hide">
+                            </div>
+                            <div class="people b_l_3 s3 hide">
+                            </div>
+                            <div class="people b_l_2 s2 hide">
+                            </div>
+                            <div class="people b_l_1 s1 hide">
+                            </div>
+                        </div>
+
+                        <div class="bottom">
+                            <div class="people b_b_5 hide">
+                            </div>
+                            <div class="people b_b_4 hide">
+                            </div>
+                            <div class="people b_b_3 hide">
+                            </div>
+                            <div class="people b_b_2 hide">
+                            </div>
+                            <div class="people b_b_1 hide">
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="keng">
+                        <div class="people f_k_5 hide">
+                        </div>
+                        <div class="people f_k_4 hide">
+                        </div>
+                        <div class="people f_k_3 hide">
+                        </div>
+                        <div class="people f_k_2 hide">
+                        </div>
+                        <div class="people f_k_1 hide">
+                        </div>
+                    </div>
+                </div>
+                <div class="female">
+                    <div class="keng">
+                        <div class="keng_left">
+                            <div class="people k_l_5 hide">
+                            </div>
+                            <div class="people k_l_4 hide">
+                            </div>
+                            <div class="people k_l_3 hide">
+                            </div>
+                            <div class="people k_l_2 hide">
+                            </div>
+                            <div class="people k_l_1 hide">
+                            </div>
+                        </div>
+                        <div class="keng_right">
+                            <div class="people k_r_4 hide">
+                            </div>
+                            <div class="people k_r_3 hide">
+                            </div>
+                            <div class="people k_r_2 hide">
+                            </div>
+                            <div class="people k_r_1 hide">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="right">
+            <div class="woman">
+                <div class="right ce">
+                    3
+                </div>
+
+            </div>
+
+            <div class="wsd">
+                <div class="right wen">
+                    25.2
+                </div>
+                <div class="right shi">
+                    31%
+                </div>
+            </div>
+
+            <div class="qjc">
+                <div class="right an">
+                    优 0.10 PPM
+                </div>
+                <div class="right hs">
+                    良 0.02 PPM
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</block>
+
+<block name="footer">
+
+</block>
+
+<block  name="footscript">
+
+
+    <script src="/public/show/js/index.js"></script>
+
+    <script>
+        $(function(){
+
+            getData();
+        });
+
+        var getData = function()
+        {
+            $.ajax({
+                url:'/api/demo/itoilet/show',
+                data:{},
+                timeout:1000,
+                success:function(res)
+                {
+                    // console.log(res);
+                    res = JSON.parse(res);
+                    //  console.log(res.id);
+                    var female_seat = res.female_seat;//女厕厕位
+                    var female_seat_left = res.female_seat_left;//女厕剩余厕位
+                    // var female_urinal_left = res.female_urinal_left;//男厕剩余便池
+                    var female_temperature = res.female_temperature;//女厕温度
+                    var female_humidity = res.female_humidity+'   %';//女厕湿度
+
+                    var female_ammonia = res.female_ammonia+'   PPM';//女厕HN3含量
+                    var female_hydrogen_sulfide = res.female_hydrogen_sulfide+'   PPM';//女厕H2S含量
+                    var female_passenger_flow = res.female_passenger_flow;//女厕客流
+
+                    var male_seat = res.male_seat;//男厕厕位
+                    var male_seat_left = res.male_seat_left;//男厕剩余厕位
+                    var male_urinal_left = res.male_urinal_left;//男厕剩余便池
+
+                    var male_temperature = res.male_temperature;//男厕温度
+                    var male_humidity = res.male_humidity+'   %';//男厕湿度
+                    var male_ammonia = res.male_ammonia+'   PPM';//男厕HN3含量
+                    var male_hydrogen_sulfide = res.male_hydrogen_sulfide+'   PPM';//H2S含量
+
+                    var male_passenger_flow = res.male_passenger_flow;//男厕客流
+                    var femail_use = res.femail_use;//女厕是否使用
+                    var maile_use = res.maile_use;//男厕是否使用
+                    var update_time = res.update_time;//最近一次更新时间（物联数据发生变化时）
+                    var visite_time = res.visite_time;//最近一次访问时间
+
+
+
+                    var male_left_urinals = res.male_left_urinals;//左侧小便池实时使用记录(当前7位)，由 0，1，2，3组成的字段串
+                    var male_right_urinals = res.male_right_urinals;//右侧小便池实时使用记录(当前5位)，0：未使用，1：已使用，2：停用，3：失联
+                    var male_seats = res.male_seats;//男厕厕位实时使用记录(当前5位)
+                    var female_left_seats = res.female_left_seats;//左侧女厕厕位实时使用记录(当前5位)
+                    var female_right_seats = res.female_right_seats;//右侧侧女厕厕位实时使用记录(当前4位)
+
+                    var time = res.time;//当前时间
+
+
+
+
+
+                    $("#time").text(time);
+                    $("#left .ce").text(male_seat_left);
+                    $("#left .bian").text(male_urinal_left);
+                    $("#left .wen").text(male_temperature);
+                    $("#left .shi").text(male_humidity);
+
+                    $("#left .an").text(male_ammonia);
+                    $("#left .hs").text(male_hydrogen_sulfide);
+
+                    $("#middle .man_liu").text(male_passenger_flow);
+                    $("#middle .man_ce").text(male_seat);
+                    $("#middle .woman_ce").text(female_seat);
+                    $("#middle .woman_liu").text(female_passenger_flow);
+
+                    $("#right .ce").text(male_seat_left);
+                    $("#right .wen").text(female_temperature);
+                    $("#right .shi").text(female_humidity);
+
+
+                    $("#right .an").text(female_ammonia);
+                    $("#right .hs").text(female_hydrogen_sulfide);
+
+
+                    // -- 小便斗 左侧 七位：
+                    for(var i=1;i<=7;i++)
+                    {
+                        var val = male_left_urinals[i];
+                        if(val == 0)
+                        {
+                            $('.b_l_'+i).addClass('hide');
+                        }
+                        else
+                        {
+                            $('.b_l_'+i).removeClass('hide');
+                        }
+                    }
+
+                    // -- 男小便斗 左侧 七位：
+                    showIcon(7,'b_l_',male_left_urinals);
+                    // -- 男 小便斗 右侧 五位：
+                    showIcon(5,'b_b_',male_right_urinals);
+                    // -- 男 大便坑  五位：
+                    showIcon(5,'f_k_',male_seats);
+                    // -- 女 大便坑 左侧  五位：
+                    showIcon(5,'k_l_',female_left_seats);
+                    // -- 女 大便坑 右侧  四位：
+                    showIcon(4,'k_r_',female_right_seats);
+
+
+                    setTimeout(function(){
+                        getData();
+                    },1000);   //需要函数触发
+                },
+                error:function()
+                {
+                    getData();
+                }
+
+
+            });
+        }
+
+        // -- 显示隐藏图标
+        // seat: 位长 ，cname 对应类名, vals:值
+        function showIcon(seat,cname,vals) {
+            // console.log(vals);
+            for(var i=1;i<=seat;i++)
+            {
+                var val = vals[i-1];
+                var node = $('.'+cname+i);
+                // console.log('.'+cname+i,node,val);
+                if(val == 0)
+                {
+                    $(node).addClass('hide');
+                }
+                else
+                {
+                    $(node).removeClass('hide');
+                }
+            }
+        }
+
+    </script>
+
+</block>
