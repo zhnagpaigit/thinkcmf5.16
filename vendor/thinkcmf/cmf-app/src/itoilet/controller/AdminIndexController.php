@@ -23,7 +23,9 @@ class AdminIndexController extends AdminBaseController
         $viewSuffix = config('template.view_suffix');
       //  dump($this->request);
         $pathinfo = $this->request->pathinfo();
+
         $tpl = $viewBase.$pathinfo.'.'.$viewSuffix;
+
         $tpl = str_replace('\\','/',$tpl);
         if(is_file($tpl))
         {
@@ -35,10 +37,10 @@ class AdminIndexController extends AdminBaseController
         }
         
     }
-//    public function index()
-//    {
-//       return $this->fetch();
-//    }
+    public function show()
+    {
+       return $this->fetch();
+    }
 
 
     //-- 产品录入
