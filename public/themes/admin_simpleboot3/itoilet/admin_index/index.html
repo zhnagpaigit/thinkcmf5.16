@@ -1,0 +1,49 @@
+<extend name="Public@layout"/>
+<block name="headstyle">
+
+</block>
+
+<block name="content">
+    <form action="{:url('adminIndex/rcord')}" method="post">
+        <input name="sharp" placeholder="产品类型">
+        <input name="machine_name" placeholder="设备名称">
+        <input name="bussness_name" placeholder="厂家名称">
+        <input name="contacter" placeholder="厂家售后联系人">
+        <input name="sale_tel" placeholder="厂家售后联系人电话">
+        <input name="tester" placeholder="测试人员">
+        <input name="sale_message" placeholder="售后信息">
+        <textarea name="others" placeholder="产品类型"></textarea>
+        <input type="date" name="left_time">
+        <input type="date" name="purse_time">
+        <input type="date" name="assign_time">
+        <input type="submit" value="录入设备">
+
+    </form>
+
+</block>
+
+<block name="footer">
+
+</block>
+
+<block  name="footscript">
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello ThinkCMF!',
+                title:'录入产品 '
+            },
+            onload(){
+                alert(0);
+            },
+            methods: {
+                sentMessage: function () {
+                    this.message = '';
+                }
+            }
+        });
+
+    </script>
+</block>

@@ -1,0 +1,35 @@
+<extend name="Public@layout"/>
+<block name="headstyle">
+
+</block>
+
+<block name="content">
+content
+
+</block>
+
+<block name="footer">
+
+</block>
+
+<block  name="footscript">
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello ThinkCMF!',
+                messages: []
+            },
+            onload(){
+                alert(0);
+            },
+            methods: {
+                sentMessage: function () {
+                    this.message = '';
+                }
+            }
+        });
+
+    </script>
+</block>
