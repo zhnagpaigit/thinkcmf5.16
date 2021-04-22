@@ -211,7 +211,22 @@
                     var female_left_seats = res.female_left_seats;//左侧女厕厕位实时使用记录(当前5位)
                     var female_right_seats = res.female_right_seats;//右侧侧女厕厕位实时使用记录(当前4位)
 
-                    var time = res.time;//当前时间
+                    var now = new Date();
+                    var year = now.getFullYear();       //年
+                    var month = now.getMonth() + 1;     //月
+                    if(month<10) month = "0"+month;
+                    var day = now.getDate();            //日
+                    if(day<10) day = "0"+day;
+                    var hh = now.getHours();            //时
+                    if(hh<10) hh = "0"+hh;
+                    var mm = now.getMinutes();          //分
+                    if(mm<10) mm = "0"+mm;
+                    var ss = now.getSeconds();          //秒
+                    if(ss<10) month = "0"+ss;
+
+
+                    // var time = res.time;//当前时间
+                    var time = year+'-'+month+'-'+day+" "+hh+":"+mm+":"+ss;
 
 
 
