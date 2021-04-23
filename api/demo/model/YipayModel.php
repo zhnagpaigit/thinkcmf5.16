@@ -17,7 +17,7 @@ class YipayModel extends Model
     //-- 公用数据
     private $_month_arr = [];
     /*
-     * 配置文件相关数据：
+     * 配置文件相关 数据：
      *  1： 最少门店数量： $mim_shop_num, :50 (小于50个时，使用新门店号)
      *  2:  使用次数小于20 的门店 占全部 使用门店的占比 $redix_lt20
      *      $radix_lt20_min :0.01  (小于0.01时，新建 门店号)
